@@ -30,24 +30,20 @@ public class MovieRepository {
     }
     public void movieDirPair(String movie,String dir){
         if(MovieDB.containsKey(movie) && DirDB.containsKey(dir)){
-            ArrayList<String> al=new ArrayList<>();
-            al.add(movie);
-            al.add(dir);
-            movieDirPair.put(movie,al);
-            return ;
+          MovieDB.put(movie,MovieDB.get(movie));
+          DirDB.put(dir,DirDB.get(dir));
+          List<String> al=new ArrayList<>();
+          if(movieDirPair.containsKey(dir) ) al=movieDirPair.get(dir);
+          al.add(movie);
+          movieDirPair.put(dir,al);
         }
         //return "Invalid Entry";
     }
     public Movie getMovie(String name){
-        if(!MovieDB.containsKey(name)){
-            return null;
-        }
         return MovieDB.get(name);
     }
     public Director getDir(String name){
-        if(!DirDB.containsKey(name)){
-            return null;
-        }
+
         return DirDB.get(name);
     }
     public List<String> getListOfDir(String dirName){
